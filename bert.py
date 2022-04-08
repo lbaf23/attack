@@ -12,14 +12,13 @@ def dataset_mapping(x):
 dataset = datasets.load_dataset("sst", split="train[:20]").map(function=dataset_mapping)
 # choose the costomized classifier as the victim model
 
-model_name = "bert-base-uncased"
+model_path = "echarlaix/bert-base-uncased-qqp-f87.8-d36-hybrid"
 
-tokenizer = transformers.BertTokenizer.from_pretrained(model_name)
-model = transformers.BertModel.from_pretrained(model_name)
+tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
+model = transformers.AutoModelForSequenceClassification.from_pretrained(model_path, num_labels=2, output_hidden_states=False)
 
 
-
-victim = oa.classifiers.TransformersClassifier(model, tokenizer, transformers.BertModel.bert.embeddings.word_embeddings)
+victim = oa.classifiers.TransformersClassifier(model, tokenizer, model.bert.embeddings.word_embeddings)
 
 
 # choose PWWS as the attacker and initialize it with default parameters
