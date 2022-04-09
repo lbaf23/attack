@@ -1,0 +1,8 @@
+{
+    "Total Attacked Instances": 20,
+    "Successful Instances": 14,
+    "Attack Success Rate": 0.7,
+    "Avg. Running Time": 0.0033309340476989748,
+    "Total Query Exceeded": 0.0,
+    "Avg. Victim Model Queries": 122.7
+}

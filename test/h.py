@@ -12,17 +12,17 @@ def dataset_mapping(x):
 dataset = datasets.load_dataset("sst", split="train[:5]").map(function=dataset_mapping)
 # choose the costomized classifier as the victim model
 
-model_path = "./user_model"
+model_path = "user_model"
 
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
 model = transformers.AutoModelForSequenceClassification.from_pretrained(model_path, num_labels=2, output_hidden_states=False)
 
-
 victim = oa.classifiers.TransformersClassifier(model, tokenizer, model.bert.embeddings.word_embeddings)
 
-
 # choose PWWS as the attacker and initialize it with default parameters
+attacker = oa.attackers.TextBuggerAttacker()
 attacker = oa.attackers.PWWSAttacker()
+
 # prepare for attacking
 attack_eval = oa.AttackEval(attacker, victim)
 # launch attacks and print attack results 
