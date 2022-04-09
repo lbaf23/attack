@@ -18,7 +18,6 @@ def unzip_file(name):
     return 'user_model'
 
 
-
 def get_file(url):
     if(url.startswith('http')):
         # download file to current dir
@@ -27,5 +26,5 @@ def get_file(url):
         return url
 
 
-p = unzip_file(get_file('user_model1234567890.zip'))
+p = unzip_file(get_file('user_model00.zip'))
 print(p)
