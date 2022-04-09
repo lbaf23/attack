@@ -2,3 +2,4 @@ data
 user_model*
 b
 *.zip
+sa/__pycache__
