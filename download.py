@@ -15,6 +15,9 @@ def imdb_dataset(x):
     }
 
 
-dataset = datasets.load_dataset("sst", split="train[:20]").map(function=sst_dataset)
+def download_sst(len):
+    dataset = datasets.load_dataset("sst", split="train[:%s]" % len).map(function=sst_dataset)
+    dataset.save_to_disk('datasets/sst')
 
-dataset.save_to_disk('datasets/sst')
+
+download_sst(10)

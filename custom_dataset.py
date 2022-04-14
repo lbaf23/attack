@@ -29,8 +29,7 @@ def sa_attack(model_path):
         ]
     })
 
-    dataset = datasets.load_from_disk('datasets/sst')
-    #datasets = datasets.load_dataset("sst", split="train[:5]").map(function=sst_dataset)
+    dataset = datasets.load_from_disk('datasets/sst', keep_in_memory=True)
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
     model = transformers.AutoModelForSequenceClassification.from_pretrained(model_path, num_labels=2, output_hidden_states=False)
@@ -51,14 +50,14 @@ def sa_attack(model_path):
     })
     rate = rate + res.get("Attack Success Rate")
 
-    print("-->TextBugger Start")
-    attacker = oa.attackers.TextBuggerAttacker()
+    print("-->GeneticAttacker Start")
+    attacker = oa.attackers.GeneticAttacker()
     attack_eval = oa.AttackEval(attacker, victim)
     res = attack_eval.eval(dataset, visualize=False)
-    print("-->TextBugger Finished")
+    print("-->GeneticAttacker Finished")
 
     result.append({
-        "attacker": "TextBuggerAttacker",
+        "attacker": "GeneticAttacker",
         "result": res
     })
 
