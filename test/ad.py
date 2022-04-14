@@ -56,7 +56,7 @@ def dataset_mapping(x):
         "tokens":  tokenizer.tokenize(x["sentence"], pos_tagging=False)
     }
 
-# Choose SST-2 as the dataset
+# Choose SST-2 as the datasets
 def prepare_data():
     vocab = {
         "<UNK>": 0,
@@ -159,7 +159,7 @@ def attack(classifier, dataset, attacker = OpenAttack.attackers.PWWSAttacker()):
 
 def main():
     print("Loading data")
-    train, valid, test, vocab = prepare_data() # Load dataset
+    train, valid, test, vocab = prepare_data() # Load datasets
     model = make_model(len(vocab)) # Design a victim model
 
     print("Training")
