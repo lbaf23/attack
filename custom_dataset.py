@@ -50,11 +50,11 @@ def sa_attack(model_path):
     })
     rate = rate + res.get("Attack Success Rate")
 
-    print("-->GeneticAttacker Start")
-    attacker = oa.attackers.GeneticAttacker()
+    print("-->DeepWordBugAttacker Start")
+    attacker = oa.attackers.DeepWordBugAttacker()
     attack_eval = oa.AttackEval(attacker, victim)
     res = attack_eval.eval(dataset, visualize=False)
-    print("-->GeneticAttacker Finished")
+    print("-->DeepWordBugAttacker Finished")
 
     result.append({
         "attacker": "GeneticAttacker",
