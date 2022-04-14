@@ -20,4 +20,4 @@ def download_sst(len):
     dataset.save_to_disk('datasets/sst')
 
 
-download_sst(10)
+download_sst(20)

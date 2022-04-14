@@ -57,7 +57,7 @@ def sa_attack(model_path):
     print("-->DeepWordBugAttacker Finished")
 
     result.append({
-        "attacker": "GeneticAttacker",
+        "attacker": "DeepWordBugAttacker",
         "result": res
     })
 
