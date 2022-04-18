@@ -3,7 +3,7 @@ import datasets
 import transformers
 
 
-def sa_attack(model_path):
+def csa_attack(model_path):
     dataset = datasets.load_from_disk("datasets/ChnSentiCorp")
     tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
     model = transformers.AutoModelForSequenceClassification.from_pretrained(model_path, num_labels=2, output_hidden_states=False)
@@ -30,4 +30,4 @@ def sa_attack(model_path):
 model_path = 'hfl/chinese-bert-wwm'
 
 
-sa_attack(model_path)
+csa_attack(model_path)
