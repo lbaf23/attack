@@ -2,28 +2,32 @@ import OpenAttack as oa
 import datasets
 import transformers
 
+
 def dataset_mapping(x):
     return {
         "x": x["sentence"],
         "y": 1 if x["label"] > 0.5 else 0,
     }
-    
-# attack a model
+
+
 def sa_attack(model_path):
-
-    # load some examples of SST-2 for evaluation
-    dataset = datasets.load_dataset("sst", split="train[:5]").map(function=dataset_mapping)
-    # choose the costomized classifier as the victim model
-
+    dataset = datasets.load_dataset("sst", split="train[:10]").map(function=dataset_mapping)
     tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
-    model = transformers.AutoModelForSequenceClassification.from_pretrained(model_path, num_labels=2, output_hidden_states=False)
 
+    # model = transformers.AutoModelForSequenceClassification.from_pretrained(model_path, num_labels=2, output_hidden_states=False)
+    model = transformers.AutoModelForSequenceClassification.from_pretrained(model_path)
     victim = oa.classifiers.TransformersClassifier(model, tokenizer, model.bert.embeddings.word_embeddings)
-
-    # choose PWWS as the attacker and initialize it with default parameters
     attacker = oa.attackers.PWWSAttacker()
-    # prepare for attacking
     attack_eval = oa.AttackEval(attacker, victim)
-    # launch attacks and print attack results 
-    res = attack_eval.eval(dataset, visualize=False)
+    res = attack_eval.eval(dataset, visualize=True)
     return res
+
+
+# model_path = 'echarlaix/bert-base-uncased-sst2-acc91.1-d37-hybrid'
+# model_path = 'mrm8488/bert-mini-finetuned-age_news-classification'
+# model_path = 'xaqren/sentiment_analysis'
+# model_path = 'lannelin/bert-imdb-1hidden'
+# model_path = 'gchhablani/bert-base-cased-finetuned-mnli'
+model_path = "rohanrajpal/bert-base-multilingual-codemixed-cased-sentiment"
+
+sa_attack(model_path)

@@ -20,4 +20,12 @@ def download_sst(len):
     dataset.save_to_disk('datasets/sst')
 
 
-download_sst(20)
+def download_conll(len):
+    dataset = datasets.load_dataset("conll2003", split="train[:%s]" % len)
+    dataset.save_to_disk('datasets/conll2003')
+
+
+
+# download_sst(20)
+download_conll(20)
+
