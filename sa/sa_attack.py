@@ -21,8 +21,7 @@ def sa_attack(model_path):
     return res
 
 
-# model_path = 'echarlaix/bert-base-uncased-sst2-acc91.1-d37-hybrid'
+model_path = 'echarlaix/bert-base-uncased-sst2-acc91.1-d37-hybrid'
 # model_path = 'lannelin/bert-imdb-1hidden'
-model_path = "rohanrajpal/bert-base-multilingual-codemixed-cased-sentiment"
 
 sa_attack(model_path)
