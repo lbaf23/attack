@@ -25,7 +25,8 @@ def sa_attack(model_path):
     res = attack_eval.eval(dataset, visualize=False, progress_bar=True)
     return res
 
-
+#model_path = 'sshleifer/tiny-distilbert-base-uncased-finetuned-sst-2-english'
+#model_path = 'bhadresh-savani/distilbert-base-uncased-sentiment-sst2'
 model_path = 'echarlaix/bert-base-uncased-sst2-acc91.1-d37-hybrid'
 # model_path = 'lannelin/bert-imdb-1hidden'
 
